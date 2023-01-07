@@ -1,28 +1,33 @@
-# Efficient Moving Average
-This is an efficient implementation of moving average filter intended to be used for micro-controllers, Tested on STM32 series.
+# RP2040 Moving Average
 
-# Example code
-This is a pseudo-code showing how one can use this library for his/her desired target platform.
+This C library is an efficient implementation of the moving average filter.
+It is a fork of Mohammad Hussein Tavakoli Bina's
+[EfficientMovingAverage](https://github.com/mhtb32/EfficientMovingAverage).
+
+## Usage Example
 ```c
-volatile uint32_t ADCValue = 0;
-uint32_t ADCValueFiltered = 0;
-FilterTypeDef filterStruct;
+#include <stdio.h>
+#include "pico/stdlib.h"
+#include "moving_average.h"
 
-int main(void)
-{
+#define POTENTIOMETER_PIN   26 // Pin 26 is ADC0
+uint16_t raw_reading;
+uint16_t filtered_reading;
 
-    Moving_Average_Init(&filterStruct);
+FilterTypeDef input_filtered;
 
-    while(1)
-    {
-        ADCValue = ADC_Get_Value(adc);
-        ADCValueFiltered = Moving_Average_Compute(ADCValue, &filterStruct);
+int main() {
+    stdio_init_all();
+    adc_init();
+    adc_gpio_init(POTENTIOMETER_PIN);
+    adc_select_input(0);
+    
+    Moving_Average_Init(&input_filtered);
+    
+    while (1) {
+        raw_reading = adc_read(); // 0 to 0xfff (4095)
+        filtered_reading = Moving_Average_Compute(raw_reading, &input_filtered);
+        sleep_ms(10);
     }
-
-    return 0;
 }
 ```
-You can change length of filter window by changing `#define WindowLength 10` in header file.
-
-# Acknowledgement
-I would like to thank [Sepehr Hashtroudi](https://github.com/sepehrhashtroudi) for all the improvements he suggested to my original implementation of algorithm.

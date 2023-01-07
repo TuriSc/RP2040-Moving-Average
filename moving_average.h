@@ -3,6 +3,8 @@
   * @file    moving_average.h
   * @author  Mohammad Hussein Tavakoli Bina, Sepehr Hashtroudi.
   * @brief   This file contains function prototype of moving average filter.
+  * @remark  2023-01-07 - Edited by Turi Scandurra, optimizing
+  *          data types for use with Raspberry Pi Pico.
   ******************************************************************************
   *MIT License
   *
@@ -38,13 +40,13 @@
 
 /* TypeDefs ------------------------------------------------------------------*/
 typedef struct{
-	uint32_t History[WindowLength]; /*Array to store values of filter window*/
-	uint32_t Sum;	/* Sum of filter window's elements*/
-	uint32_t WindowPointer; /* Pointer to the first element of window*/
+	uint16_t History[WindowLength]; /*Array to store values of filter window*/
+	uint16_t Sum;	/* Sum of filter window's elements*/
+	uint16_t WindowPointer; /* Pointer to the first element of window*/
 }FilterTypeDef;
 
 /* Function prototypes -------------------------------------------------------*/
 void Moving_Average_Init(FilterTypeDef* filter_struct);
-uint32_t Moving_Average_Compute(uint32_t raw_data, FilterTypeDef* filter_struct);
+uint16_t Moving_Average_Compute(uint16_t raw_data, FilterTypeDef* filter_struct);
 
 #endif

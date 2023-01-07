@@ -3,7 +3,9 @@
   * @file    moving_average.c
   * @author  Mohammad Hussein Tavakoli Bina, Sepehr Hashtroudi
   * @brief   This file contains an efficient implementation of 
-	*					 moving average filter.
+  *          moving average filter.
+  * @remark  2023-01-07 - Edited by Turi Scandurra, optimizing
+  *          data types for use with Raspberry Pi Pico.
   ******************************************************************************
 	*MIT License
 	*
@@ -41,7 +43,7 @@ void Moving_Average_Init(FilterTypeDef* filter_struct)
 	filter_struct->Sum = 0;
 	filter_struct->WindowPointer = 0;
 	
-	for(uint32_t i=0; i<WindowLength; i++)
+	for(uint16_t i=0; i<WindowLength; i++)
 	{
 		filter_struct->History[i] = 0;
 	}
@@ -53,7 +55,7 @@ void Moving_Average_Init(FilterTypeDef* filter_struct)
 	* @param  filter_struct : Data structure
   * @retval Filtered value.
   */
-uint32_t Moving_Average_Compute(uint32_t raw_data, FilterTypeDef* filter_struct)
+uint16_t Moving_Average_Compute(uint16_t raw_data, FilterTypeDef* filter_struct)
 {
 	filter_struct->Sum += raw_data;
 	filter_struct->Sum -= filter_struct->History[filter_struct->WindowPointer];
