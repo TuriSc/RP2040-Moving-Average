@@ -32,8 +32,13 @@
 #ifndef MOVING_AVERAGE_H
 #define MOVING_AVERAGE_H
 
+
 /* Includes ------------------------------------------------------------------*/
 #include "stdint.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* Definitions ---------------------------------------------------------------*/
 #define WindowLength 10
@@ -48,5 +53,9 @@ typedef struct{
 /* Function prototypes -------------------------------------------------------*/
 void Moving_Average_Init(FilterTypeDef* filter_struct);
 uint16_t Moving_Average_Compute(uint16_t raw_data, FilterTypeDef* filter_struct);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
