@@ -4,7 +4,8 @@ This C library is an efficient implementation of the moving average filter.
 It is a fork of Mohammad Hussein Tavakoli Bina's
 [EfficientMovingAverage](https://github.com/mhtb32/EfficientMovingAverage).
 
-## Usage Example
+
+### Usage Example
 ```c
 #include <stdio.h>
 #include "pico/stdlib.h"
@@ -31,3 +32,6 @@ int main() {
     }
 }
 ```
+
+### Projects using this library
+- [Dodepan](https://github.com/TuriSc/Dodepan)
