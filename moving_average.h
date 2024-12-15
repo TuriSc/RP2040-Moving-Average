@@ -41,11 +41,11 @@ extern "C" {
 #endif
 
 /* Definitions ---------------------------------------------------------------*/
-#define WindowLength 10
+#define FILTER_WINDOW_SIZE 10
 
 /* TypeDefs ------------------------------------------------------------------*/
 typedef struct{
-	uint16_t History[WindowLength]; /*Array to store values of filter window*/
+	uint16_t History[FILTER_WINDOW_SIZE]; /*Array to store values of filter window*/
 	uint16_t Sum;	/* Sum of filter window's elements*/
 	uint16_t WindowPointer; /* Pointer to the first element of window*/
 }FilterTypeDef;
