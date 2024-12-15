@@ -43,11 +43,25 @@ extern "C" {
 /* Definitions ---------------------------------------------------------------*/
 #define FILTER_WINDOW_SIZE 10
 
-/* TypeDefs ------------------------------------------------------------------*/
+/**
+  * @struct FilterTypeDef
+  * @brief Data structure for the moving average filter.
+  */
 typedef struct{
-	uint16_t History[FILTER_WINDOW_SIZE]; /*Array to store values of filter window*/
-	uint16_t Sum;	/* Sum of filter window's elements*/
-	uint16_t WindowPointer; /* Pointer to the first element of window*/
+	/**
+	 * @brief Array to store values of filter window.
+	 */
+	uint16_t History[FILTER_WINDOW_SIZE];
+	
+	/**
+	 * @brief Sum of filter window's elements.
+	 */
+	uint16_t Sum;
+	
+	/**
+	 * @brief Pointer to the first element of window.
+	 */
+	uint16_t WindowPointer;
 }FilterTypeDef;
 
 /* Function prototypes -------------------------------------------------------*/
